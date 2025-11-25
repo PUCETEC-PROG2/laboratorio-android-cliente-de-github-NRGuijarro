@@ -1,5 +1,6 @@
 package ec.edu.uisek.githubclient
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.EditText
@@ -22,6 +23,13 @@ class MainActivity : AppCompatActivity(), ReposAdapter.OnRepoActionClickListener
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        binding.newRepoFab.setOnClickListener {
+            displayNewRepoForm()
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
         setupRecyclerView()
         fetchRepositories()
     }
@@ -65,6 +73,12 @@ class MainActivity : AppCompatActivity(), ReposAdapter.OnRepoActionClickListener
 
     private fun showMessage (msg: String) {
         Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
+    }
+
+    private fun displayNewRepoForm() {
+        Intent(this, RepoForm::class.java).apply {
+            startActivity(this)
+        }
     }
 
     override fun onEditClick(repo: Repo) {

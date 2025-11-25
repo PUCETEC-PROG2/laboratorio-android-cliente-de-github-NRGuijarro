@@ -7,3 +7,8 @@ data class Repo(
     val language: String?,
     val owner: RepoOwner
 )
+data class RepoRequest(
+    //nos ayuda a enviar request desde el formulario
+    val name: String,
+    val description: String?
+)
